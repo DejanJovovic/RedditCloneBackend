@@ -1,0 +1,6 @@
+package src.main.java.reddit.clone.model.domain;
+
+public enum EReactionType {
+    UPVOTE,
+    DOWNVOTE
+}
