@@ -1,9 +1,9 @@
-package src.main.java.reddit.clone.model.dto;
+package reddit.clone.model.dto;
 
-import src.main.java.reddit.clone.model.domain.Comment;
-import src.main.java.reddit.clone.model.domain.Post;
-import src.main.java.reddit.clone.model.domain.Reaction;
-import src.main.java.reddit.clone.model.domain.User;
+import reddit.clone.model.domain.Comment;
+import reddit.clone.model.domain.Post;
+import reddit.clone.model.domain.Reaction;
+import reddit.clone.model.domain.User;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

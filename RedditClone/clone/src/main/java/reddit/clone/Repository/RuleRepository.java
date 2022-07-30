@@ -1,7 +1,7 @@
 package reddit.clone.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import src.main.java.reddit.clone.model.domain.Rule;
+import reddit.clone.model.domain.Rule;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

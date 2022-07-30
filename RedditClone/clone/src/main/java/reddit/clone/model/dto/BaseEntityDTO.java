@@ -1,4 +1,4 @@
-package src.main.java.reddit.clone.model.dto;
+package reddit.clone.model.dto;
 
 public class BaseEntityDTO {
 

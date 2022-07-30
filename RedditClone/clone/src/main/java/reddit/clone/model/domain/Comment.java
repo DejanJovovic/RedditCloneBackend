@@ -1,4 +1,4 @@
-package src.main.java.reddit.clone.model.domain;
+package reddit.clone.model.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

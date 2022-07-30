@@ -1,7 +1,7 @@
-package src.main.java.reddit.clone.model.domain;
+package reddit.clone.model.domain;
 
-import src.main.java.reddit.clone.model.domain.BaseEntity;
-import src.main.java.reddit.clone.model.domain.User;
+import reddit.clone.model.domain.BaseEntity;
+import reddit.clone.model.domain.User;
 
 import java.time.LocalDate;
 import javax.persistence.*;

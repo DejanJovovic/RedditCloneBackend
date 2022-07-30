@@ -1,4 +1,4 @@
-package src.main.java.reddit.clone.model.domain;
+package reddit.clone.model.domain;
 
 public abstract class BaseEntity{
     private Long id;

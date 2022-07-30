@@ -1,8 +1,9 @@
 package reddit.clone.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import src.main.java.reddit.clone.model.domain.Community;
+
 import org.springframework.stereotype.Repository;
+import reddit.clone.model.domain.Community;
 
 import java.util.List;
 

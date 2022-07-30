@@ -1,6 +1,6 @@
-package src.main.java.reddit.clone.model.dto;
+package reddit.clone.model.dto;
 
-import src.main.java.reddit.clone.model.domain.Community;
+import reddit.clone.model.domain.Community;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
