@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reddit.clone.Services.PostService;
+import reddit.clone.model.dto.BannedDTO;
 import reddit.clone.model.dto.PostDTO;
 
 
@@ -22,7 +23,9 @@ public class PostController {
     }
 
     @GetMapping(path = "/get-all")
-    public ResponseEntity<?> getAll() {return new ResponseEntity<>(postService.getAll(), HttpStatus.OK); }
+    public ResponseEntity<?> getAll() {
+        return new ResponseEntity<>(postService.getAll(), HttpStatus.OK);
+    }
 
     @GetMapping(path = "/get-one/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id) {
@@ -30,8 +33,8 @@ public class PostController {
 
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id) {
-        return new ResponseEntity<>(postService.update(id), HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody PostDTO dto) {
+        return new ResponseEntity<>(postService.update(id, dto), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reddit.clone.Services.FlairService;
+import reddit.clone.model.dto.BannedDTO;
 import reddit.clone.model.dto.FlairDTO;
 import reddit.clone.model.dto.UserDTO;
 
@@ -31,7 +32,13 @@ public class FlairController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id) {
-        return new ResponseEntity<>(flairService.update(id), HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody FlairDTO dto) {
+        return new ResponseEntity<>(flairService.update(id, dto), HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        return new ResponseEntity<>(flairService.delete(id), HttpStatus.OK);
+
     }
 }

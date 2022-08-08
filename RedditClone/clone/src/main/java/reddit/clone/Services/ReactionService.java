@@ -7,13 +7,15 @@ import reddit.clone.model.domain.User;
 import reddit.clone.model.dto.PostDTO;
 import reddit.clone.model.dto.ReactionDTO;
 
+import java.util.List;
+
 public interface ReactionService {
 
-    Reaction update(long id);
+    Reaction update(long id, ReactionDTO dto);
 
     Reaction add(ReactionDTO dto);
 
-    Reaction getAll();
+    List<Reaction> getAll();
     Reaction getOne(long id);
 
     Reaction delete(long id);

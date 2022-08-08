@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reddit.clone.Services.ReactionService;
+import reddit.clone.model.dto.BannedDTO;
 import reddit.clone.model.dto.PostDTO;
 import reddit.clone.model.dto.ReactionDTO;
 import reddit.clone.model.dto.ReportDTO;
@@ -22,8 +23,8 @@ public class ReactionController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id) {
-        return new ResponseEntity<>(reactionService.update(id), HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ReactionDTO dto) {
+        return new ResponseEntity<>(reactionService.update(id, dto), HttpStatus.OK);
 
     }
 

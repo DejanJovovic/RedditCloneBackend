@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reddit.clone.Services.ReportService;
 import reddit.clone.model.domain.Report;
+import reddit.clone.model.dto.BannedDTO;
 import reddit.clone.model.dto.ReactionDTO;
 import reddit.clone.model.dto.ReportDTO;
 
@@ -20,8 +21,8 @@ public class ReportController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id) {
-        return new ResponseEntity<>(reportService.update(id), HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ReportDTO dto) {
+        return new ResponseEntity<>(reportService.update(id, dto), HttpStatus.OK);
 
     }
 

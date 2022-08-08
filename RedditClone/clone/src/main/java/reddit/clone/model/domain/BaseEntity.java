@@ -16,8 +16,11 @@ public abstract class BaseEntity{
         return deleted;
     }
 
-    public void setField(boolean deleted) {
+    public void setDeleted(boolean deleted) {
         this.deleted = deleted;
     }
 
+    public boolean isDeleted() {
+        return deleted;
+    }
 }

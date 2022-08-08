@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reddit.clone.Services.CommentService;
 import reddit.clone.Services.PostService;
+import reddit.clone.model.dto.BannedDTO;
 import reddit.clone.model.dto.CommentDTO;
 
 @RestController
@@ -21,7 +22,9 @@ public class CommentController {
     }
 
     @GetMapping(path = "/get-all")
-    public ResponseEntity<?> getAll() {return new ResponseEntity<>(commentService.getAll(), HttpStatus.OK); }
+    public ResponseEntity<?> getAll() {
+        return new ResponseEntity<>(commentService.getAll(), HttpStatus.OK);
+    }
 
     @GetMapping(path = "/get-one/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id) {
@@ -29,8 +32,8 @@ public class CommentController {
 
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id) {
-        return new ResponseEntity<>(commentService.update(id), HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CommentDTO dto) {
+        return new ResponseEntity<>(commentService.update(id, dto), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")

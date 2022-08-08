@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reddit.clone.model.dto.BannedDTO;
 import reddit.clone.model.dto.UserDTO;
 
-
+@RestController
+@RequestMapping("api/users")
 public class UserController {
 
-    @RestController
-    @RequestMapping("api/users")
     public class UserService {
 
         @Autowired
@@ -33,8 +33,8 @@ public class UserController {
 
 
         @PutMapping(path = "/{id}")
-        public ResponseEntity<?> update(@PathVariable Long id) {
-            return new ResponseEntity<>(userService.update(id), HttpStatus.OK);
+        public ResponseEntity<?> update(@PathVariable Long id, @RequestBody UserDTO dto) {
+            return new ResponseEntity<>(userService.update(id, dto), HttpStatus.OK);
         }
 
         @DeleteMapping(path = "/{id}")

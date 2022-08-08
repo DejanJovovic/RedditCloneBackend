@@ -5,6 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reddit.clone.Services.CommunityService;
+import reddit.clone.model.domain.Community;
+import reddit.clone.model.dto.BannedDTO;
 import reddit.clone.model.dto.CommunityDTO;
 
 @RestController
@@ -20,7 +22,9 @@ public class CommunityController {
     }
 
     @GetMapping(path = "/get-all")
-    public ResponseEntity<?> getAll() {return new ResponseEntity<>(communityService.getAll(), HttpStatus.OK); }
+    public ResponseEntity<?> getAll() {
+        return new ResponseEntity<>(communityService.getAll(), HttpStatus.OK);
+    }
 
     @GetMapping(path = "/get-one/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id) {
@@ -28,8 +32,8 @@ public class CommunityController {
 
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id) {
-        return new ResponseEntity<>(communityService.update(id), HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody CommunityDTO dto) {
+        return new ResponseEntity<>(communityService.update(id, dto), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")

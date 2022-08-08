@@ -22,8 +22,8 @@ public class BannedController {
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id) {
-        return new ResponseEntity<>(bannedService.update(id), HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody BannedDTO dto) {
+        return new ResponseEntity<>(bannedService.update(id, dto), HttpStatus.OK);
     }
 
     @GetMapping(path = "/get-all")
@@ -35,4 +35,10 @@ public class BannedController {
     public ResponseEntity<?> getOne(@PathVariable Long id) {
         return new ResponseEntity<>(bannedService.getOne(id), HttpStatus.OK);
     }
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        return new ResponseEntity<>(bannedService.delete(id), HttpStatus.OK);
+
+    }
+
 }
