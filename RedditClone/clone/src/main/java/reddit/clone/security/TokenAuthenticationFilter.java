@@ -1,12 +1,11 @@
 package reddit.clone.security;
 
-import org.springframework.web.filter.OncePerRequestFilter;
-import com.isa.config.CustomUserDetailsService;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userDetails.UserDetails;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userDetails.UserDetails.Service;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.filter.OncePerRequestFilter;
+import reddit.clone.Services.Impl.CustomUserDetailsService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -28,24 +27,24 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
         String email;
         String authToken = tokenUtils.getToken(request);
 
         if (authToken != null) {
-            email = tokenUtils.getEmailFromToken(authToken)
+            email = tokenUtils.getEmailFromToken(authToken);
 
 
             if (email != null) {
-                UserDetails userDetails = userDetailsService.loadUserByUsername(email); //Override-ovano u ISerService koji extenduje UserDetailsService
+                UserDetails userDetails = (UserDetails) userDetailsService.loadUserByUsername(email); //Override-ovano u ISerService koji extenduje UserDetailsService
 
 
                 if (tokenUtils.validateToken(authToken, userDetails)) {
-                    Collection<? extends GrantedAuthority> authorities = userDetailsService.getAuthoritesFromUserDetails(userDetails);
+                    Collection<? extends GrantedAuthority> authorities = userDetailsService.getAuthoritiesFromUserDetails(userDetails);
                     TokenBasedAuthentication authentication = new TokenBasedAuthentication(userDetails, authorities);
                     authentication.setToken(authToken);
-                    SecurityContextHolder.getContext().setAuthentications(authentication);
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
         }

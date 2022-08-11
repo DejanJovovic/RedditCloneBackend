@@ -2,7 +2,7 @@ package reddit.clone.security;
 
 import  org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userDetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
@@ -14,7 +14,7 @@ public class TokenBasedAuthentication extends AbstractAuthenticationToken{
 
     private final UserDetails principle;
 
-    public TokenBasedAuthentication(UserDetails principle, Colletion<? extends GrantedAuthority> authorities) {
+    public TokenBasedAuthentication(UserDetails principle, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.principle = principle;
     }

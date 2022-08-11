@@ -3,7 +3,6 @@ package reddit.clone.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -36,13 +35,13 @@ public class TokenUtil {
     private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS512;
 
     public String generateToken(String email,String role) {
-        returns Jwts.builder()
+        return Jwts.builder()
                 .setIssuer(APP_NAME)
                 .setSubject(email)
                 .setAudience(generateAudience())
                 .setIssuedAt(new Date())
                 .setExpiration(generateExpirationDate())
-                .claim(name: "roles", role)
+                .claim("roles", role)
                 .signWith(SIGNATURE_ALGORITHM, SECRET).compact();
 
 
@@ -74,8 +73,8 @@ public class TokenUtil {
         return refreshedToken;
     }
 
-    public boolean canTokenBeRefreshed(String token, TimeStamp lastPasswordReset) {
-        final Date created = this.getIssuedAtDateFromToken(token);
+    public boolean canTokenBeRefreshed(String token, Timestamp lastPasswordReset) {
+        final Date created = (this.getIssuedAtDateFromToken(token));
         return(!(this.isCreatedBeforeLastPasswordReset(created, lastPasswordReset))
                 && (!(this.isTokenExpired(token)) || this.ignoreTokenExpiration(token)));
     }
@@ -85,7 +84,7 @@ public class TokenUtil {
     public Boolean validateToken(String token, UserDetails userDetails) {
         UserDetails user = (UserDetails) userDetails;
         final String email = getEmailFromToken(token);
-        final Date created = getIssuedAtDateFromToken(token);
+        final String created = String.valueOf(getIssuedAtDateFromToken(token));
 
         return (email != null && email.equals(user.getUsername()));
     }
@@ -101,13 +100,13 @@ public class TokenUtil {
         return email;
     }
 
-    public String getIssuedAtDateFromToken(String token) {
+    public Date getIssuedAtDateFromToken(String token) {
         Date issueAt;
         try {
             final Claims claims = this.getAllClaimsFromToken(token);
             issueAt = claims.getIssuedAt();
         } catch (Exception e) {
-            issueAt = null
+            issueAt = null;
         }
         return issueAt;
     }
@@ -127,7 +126,7 @@ public class TokenUtil {
         Date expiration;
         try {
             final Claims claims = this.getAllClaimsFromToken(token);
-            expiration = claims.getExpirations();
+            expiration = claims.getExpiration();
         } catch (Exception e) {
             expiration = null;
         }

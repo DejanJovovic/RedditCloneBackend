@@ -23,4 +23,8 @@ public abstract class BaseEntity{
     public boolean isDeleted() {
         return deleted;
     }
+
+    public Object getRole() {
+        return null;
+    }
 }
