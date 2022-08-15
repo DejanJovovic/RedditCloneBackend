@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reddit.clone.Services.UserService;
 import reddit.clone.model.dto.BannedDTO;
 import reddit.clone.model.dto.UserDTO;
 
 @RestController
 @RequestMapping("api/users")
 public class UserController {
-
-    public class UserService {
 
         @Autowired
         private UserService userService;
@@ -44,4 +43,3 @@ public class UserController {
         }
 
     }
-}

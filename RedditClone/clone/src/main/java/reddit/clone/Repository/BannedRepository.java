@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface BannedRepository extends JpaRepository<Banned, Long> {
 
-    List<Banned> findAllByPatientId(Long id);
+    List<Banned> findAllById(Long id);
 }

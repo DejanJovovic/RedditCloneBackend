@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface RuleRepository extends JpaRepository<Rule, Long> {
 
-    List<Rule> findAllByPatientId(Long id);
+    List<Rule> findAllById(Long id);
 }

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Entity
 public class Reaction extends BaseEntity {
 
-    private Reaction type;
+    private EReactionType type;
     private LocalDate timestamp;
 
     @ManyToOne
@@ -15,7 +15,6 @@ public class Reaction extends BaseEntity {
 
     @ManyToOne
     private Post post;
-
 
     @ManyToOne
     private Comment comment;
@@ -46,11 +45,11 @@ public class Reaction extends BaseEntity {
     }
 
 
-    public Reaction getType() {
+    public EReactionType getType() {
         return type;
     }
 
-    public void setType(Reaction type) {
+    public void setType(EReactionType type) {
         this.type = type;
     }
 

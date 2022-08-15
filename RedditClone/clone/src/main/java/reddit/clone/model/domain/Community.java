@@ -12,18 +12,6 @@ public class Community extends BaseEntity{
     private boolean isSuspended;
     private String suspendedReason;
 
-    @ManyToMany
-    private List<Flair> flairs;
-
-    public List<Flair> getFlairs() {
-        return flairs;
-    }
-
-    public void setFlairs(List<Flair> flairs) {
-        this.flairs = flairs;
-    }
-
-
     public String getName() {
         return name;
     }

@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface FlairRepository extends JpaRepository<Flair, Long> {
 
-    List<Flair> findAllByPatientId(Long id);
+    List<Flair> findAllById(Long id);
 }

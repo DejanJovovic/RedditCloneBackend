@@ -12,20 +12,6 @@ public class User extends BaseEntity{
     private String description;
     private String displayName;
 
-    @ManyToMany
-    private Community community;
-
-    public Community getCommunity() {
-        return community;
-    }
-
-    public void setCommunity(Community community) {
-        this.community = community;
-    }
-
-
-
-
     public String getUsername() {
         return username;
     }

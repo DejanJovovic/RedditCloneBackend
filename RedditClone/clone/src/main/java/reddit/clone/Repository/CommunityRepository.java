@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface CommunityRepository extends JpaRepository<Community, Long> {
 
-    List<Community> findAllByPatientId(Long id);
+    List<Community> findAllById(Long id);
 }

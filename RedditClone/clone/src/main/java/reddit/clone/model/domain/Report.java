@@ -6,8 +6,9 @@ import java.time.LocalDate;
 
 @Entity
 public class Report extends BaseEntity{
-    private  Report reason;
+    private  String reason;
     private LocalDate timestamp;
+    @ManyToOne
     private User byUser;
     private boolean accepted;
 
@@ -34,11 +35,11 @@ public class Report extends BaseEntity{
     }
 
 
-    public Report getReason() {
+    public String getReason() {
         return reason;
     }
 
-    public void setReason(Report reason) {
+    public void setReason(String reason) {
         this.reason = reason;
     }
 

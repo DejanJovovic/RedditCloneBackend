@@ -1,9 +1,6 @@
 package reddit.clone.model.dto;
 
-import reddit.clone.model.domain.Comment;
-import reddit.clone.model.domain.Post;
-import reddit.clone.model.domain.Reaction;
-import reddit.clone.model.domain.User;
+import reddit.clone.model.domain.*;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -12,7 +9,7 @@ import java.time.LocalDate;
 public class ReactionDTO {
 
 
-    private Reaction type;
+    private EReactionType type;
     private LocalDate timestamp;
 
 
@@ -49,11 +46,11 @@ public class ReactionDTO {
     }
 
 
-    public Reaction getType() {
+    public EReactionType getType() {
         return type;
     }
 
-    public void setType(Reaction type) {
+    public void setType(EReactionType type) {
         this.type = type;
     }
 

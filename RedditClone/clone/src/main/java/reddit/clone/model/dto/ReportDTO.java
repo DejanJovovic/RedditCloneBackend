@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class ReportDTO {
 
-    private Report reason;
+    private String reason;
     private LocalDate timestamp;
     private User byUser;
     private boolean accepted;
@@ -39,11 +39,11 @@ public class ReportDTO {
         this.post = post;
     }
 
-    public Report getReason() {
+    public String getReason() {
         return reason;
     }
 
-    public void setReason(Report reason) {
+    public void setReason(String reason) {
         this.reason = reason;
     }
 

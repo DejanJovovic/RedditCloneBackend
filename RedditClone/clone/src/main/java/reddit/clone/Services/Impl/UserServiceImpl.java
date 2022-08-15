@@ -1,5 +1,6 @@
 package reddit.clone.Services.Impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reddit.clone.Repository.UserRepository;
 import reddit.clone.Services.UserService;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Component
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserRepository userRepository;
 
 

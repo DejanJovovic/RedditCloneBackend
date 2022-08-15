@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ReactionRepository extends JpaRepository<Reaction, Long> {
 
-    List<Reaction> findAllByPatientId(Long id);
+    List<Reaction> findAllById(Long id);
 }
