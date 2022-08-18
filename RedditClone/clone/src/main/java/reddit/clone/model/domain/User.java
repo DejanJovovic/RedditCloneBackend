@@ -12,6 +12,8 @@ public class User extends BaseEntity{
     private String description;
     private String displayName;
 
+    private EUser role;
+
     public String getUsername() {
         return username;
     }

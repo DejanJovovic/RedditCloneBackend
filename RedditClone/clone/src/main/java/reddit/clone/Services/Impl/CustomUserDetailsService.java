@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findOneByEmail(username);
+        Optional<User> user = userRepository.findOneByUsername(username);
         org.springframework.security.core.userdetails.User.UserBuilder builder = null;
 
         if (!user.isPresent()) {
@@ -44,7 +44,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public Collection<? extends GrantedAuthority> getAuthoritiesFromUserDetails(UserDetails principle) {
         List<Authority> authorities = new ArrayList<>();
 
-        Optional<User> user = userRepository.findOneByEmail(principle.getUsername());
+        Optional<User> user = userRepository.findOneByUsername(principle.getUsername());
 
         if(!user.isPresent()) {
             return authorities;
@@ -59,8 +59,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
 
-    public User findUserByEmail (String email) {
-        return userRepository.findOneByEmail(email).get();
+    public User findUserByUsername (String username) {
+        return userRepository.findOneByUsername(username).get();
     }
 
 
