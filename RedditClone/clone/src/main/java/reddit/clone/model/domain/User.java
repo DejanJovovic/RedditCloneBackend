@@ -70,4 +70,14 @@ public class User extends BaseEntity{
         this.displayName = displayName;
     }
 
+
+    @Override
+    public EUser getRole() {
+        return role;
+    }
+
+    public void setRole(EUser role) {
+        this.role = role;
+    }
+
 }
