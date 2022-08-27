@@ -72,4 +72,13 @@ public class CommunityServiceImpl implements CommunityService {
         community.get().setDeleted(true);
         return communityRepository.save(community.get());
     }
+
+    @Override
+    public Community save(Community community) {
+        try{
+            return communityRepository.save(community);
+        }catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
 }

@@ -9,17 +9,30 @@ import java.time.LocalDate;
 public class ReactionDTO {
 
 
+    private Long postId;
     private EReactionType type;
     private LocalDate timestamp;
-
 
     private UserDTO user;
 
     private PostDTO post;
 
 
+    public ReactionDTO(Reaction reaction) {
+        type = reaction.getType();
+    }
+
 
     private CommentDTO comment;
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
 
     public UserDTO getUser() {
         return user;

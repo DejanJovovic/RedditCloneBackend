@@ -1,5 +1,6 @@
 package reddit.clone.Services.Impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reddit.clone.Repository.ReactionRepository;
 import reddit.clone.Services.ReactionService;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Component
 public class ReactionServiceImpl implements ReactionService {
 
+    @Autowired
     private ReactionRepository reactionRepository;
 
 
@@ -32,7 +34,21 @@ public class ReactionServiceImpl implements ReactionService {
     }
 
     @Override
-    public Reaction getOne(long id) {
+    public Reaction save(Reaction reaction) {
+        try{
+            return reactionRepository.save(reaction);
+        }catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Reaction findUserById(Long postId, Long id) {
+        return reactionRepository.findByUserId(postId,id);
+    }
+
+    @Override
+    public Reaction getOne(Long id) {
         Optional<Reaction> reaction = reactionRepository.findById(id);
 
         if(reaction.isEmpty()) {
@@ -43,7 +59,7 @@ public class ReactionServiceImpl implements ReactionService {
     }
 
     @Override
-    public Reaction update(long id, ReactionDTO dto) {
+    public Reaction update(Long id, ReactionDTO dto) {
         Optional<Reaction> reaction = reactionRepository.findById(id);
 
         if(reaction.isEmpty()) {
@@ -55,7 +71,7 @@ public class ReactionServiceImpl implements ReactionService {
     }
 
     @Override
-    public Reaction delete(long id) {
+    public Reaction delete(Long id) {
         Optional<Reaction> reaction = reactionRepository.findById(id);
 
         if(reaction.isEmpty()) {

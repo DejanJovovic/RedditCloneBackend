@@ -11,13 +11,16 @@ import java.util.List;
 
 public interface ReactionService {
 
-    Reaction update(long id, ReactionDTO dto);
+    Reaction update(Long id, ReactionDTO dto);
 
     Reaction add(ReactionDTO dto);
 
     List<Reaction> getAll();
-    Reaction getOne(long id);
+    Reaction getOne(Long id);
 
-    Reaction delete(long id);
+    Reaction delete(Long id);
 
+    Reaction save(Reaction reaction);
+
+    Reaction findUserById(Long postId, Long id);
 }

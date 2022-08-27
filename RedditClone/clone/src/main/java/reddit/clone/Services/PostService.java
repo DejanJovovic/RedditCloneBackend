@@ -9,10 +9,14 @@ public interface PostService {
     Post add(PostDTO dto);
 
     List<Post> getAll();
-    Post getOne(long id);
+    Post getOne(Long id);
 
-    Post update(long id, PostDTO dto);
+    Post update(Long id, PostDTO dto);
 
-    Post delete(long id);
+    Post delete(Long id);
+
+    Post save(Post post);
+
+    List<Post> findAllByCommunity(Long id);
 
 }

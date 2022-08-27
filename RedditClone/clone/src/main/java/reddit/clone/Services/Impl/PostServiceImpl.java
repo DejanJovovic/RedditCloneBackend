@@ -1,5 +1,6 @@
 package reddit.clone.Services.Impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reddit.clone.Repository.PostRepository;
 import reddit.clone.Services.PostService;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Component
 public class PostServiceImpl implements PostService{
 
+    @Autowired
     private PostRepository postRepository;
 
     @Override
@@ -33,8 +35,20 @@ public class PostServiceImpl implements PostService{
         return postRepository.findAll();
     }
 
+
     @Override
-    public Post getOne(long id) {
+    public Post save(Post post) {
+        return postRepository.save(post);
+    }
+
+    @Override
+    public List<Post> findAllByCommunity(Long id) {
+
+        return postRepository.findAllByCommunity(id);
+    }
+
+    @Override
+    public Post getOne(Long id) {
         Optional<Post> post = postRepository.findById(id);
 
         if(post.isEmpty()) {
@@ -44,7 +58,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post update(long id, PostDTO dto) {
+    public Post update(Long id, PostDTO dto) {
         Optional<Post> post = postRepository.findById(id);
 
         if(post.isEmpty()) {
@@ -58,7 +72,7 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post delete(long id) {
+    public Post delete(Long id) {
         Optional<Post> post = postRepository.findById(id);
 
         if(post.isEmpty()) {

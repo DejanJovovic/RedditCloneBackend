@@ -16,4 +16,6 @@ public interface CommunityService {
 
     Community delete(long id);
 
+    Community save(Community community);
+
 }

@@ -1,6 +1,7 @@
 package reddit.clone.Services.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import reddit.clone.Repository.UserRepository;
 import reddit.clone.Services.UserService;
@@ -16,6 +17,13 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
 
     @Override
@@ -94,6 +102,32 @@ public class UserServiceImpl implements UserService {
         user.get().setDeleted(true);
 
         return userRepository.save(user.get());
+    }
+
+    @Override
+    public User createUser(UserDTO userDTO) {
+       Optional<User> user = userRepository.findFirstByUsername(userDTO.getUsername());
+
+       if(user.isPresent()) {
+           return null;
+       }
+
+       User newUser = new User();
+       newUser.setUsername(userDTO.getUsername());
+       newUser.setPassword(userDTO.getPassword());
+       newUser = userRepository.save(newUser);
+
+       return newUser;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        Optional<User> user = userRepository.findFirstByUsername(username);
+
+        if(!user.isEmpty()) {
+            return user.get();
+        }
+        return null;
     }
 
 

@@ -1,6 +1,7 @@
 package reddit.clone.model.dto;
 
 import reddit.clone.model.domain.Community;
+import reddit.clone.model.domain.Post;
 import reddit.clone.model.domain.User;
 
 import javax.persistence.Entity;
@@ -9,13 +10,31 @@ import java.time.LocalDate;
 
 public class PostDTO {
 
+    private Long id;
+
     private String title;
     private String text;
     private LocalDate creationDate;
     private String imagePath;
 
+    public Integer karma;
+
     private UserDTO user;
     private CommunityDTO community;
+
+
+    public PostDTO() {
+
+    }
+
+    public PostDTO(Post post) {
+        id = post.getPostId();
+        title = post.getTitle();
+        text = post.getText();
+        karma = post.getKarma();
+        imagePath = post.getImagePath();
+        community = new CommunityDTO(post.getCommunity());
+    }
 
 
 
@@ -35,6 +54,22 @@ public class PostDTO {
         this.community = community;
     }
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getKarma() {
+        return karma;
+    }
+
+    public void setKarma(Integer karma) {
+        this.karma = karma;
+    }
 
 
     public String getTitle() {

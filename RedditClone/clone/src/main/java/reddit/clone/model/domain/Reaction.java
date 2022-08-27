@@ -1,6 +1,8 @@
 package reddit.clone.model.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
@@ -10,10 +12,12 @@ public class Reaction extends BaseEntity {
     private EReactionType type;
     private LocalDate timestamp;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "postId")
     private Post post;
 
     @ManyToOne

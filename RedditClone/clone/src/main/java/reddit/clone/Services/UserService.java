@@ -20,4 +20,8 @@ public interface UserService {
 
     User delete(long id);
 
+    User createUser(UserDTO userDTO);
+
+    User findByUsername(String username);
+
 }
