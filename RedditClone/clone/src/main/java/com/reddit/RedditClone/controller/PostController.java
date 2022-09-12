@@ -1,5 +1,6 @@
 package com.reddit.RedditClone.controller;
 
+import com.reddit.RedditClone.dto.CommunityDTO;
 import com.reddit.RedditClone.dto.PostDTO;
 import com.reddit.RedditClone.model.Community;
 import com.reddit.RedditClone.model.Post;
@@ -45,7 +46,7 @@ public class PostController {
         LocalDate lt = LocalDate.now();
         post.setCreationDate(lt);
         post.setCommunity(community);
-        User user = userService.findByUsername("jova");
+        User user = userService.findByUsername("dejan");
         post.setUser(user);
         community.addPost(post);
 
@@ -78,7 +79,7 @@ public class PostController {
     public ResponseEntity<Void> deletePost(@PathVariable Long id){
         Post post = postService.findOneById(id);
         if(post != null) {
-            postService.delete(id);
+            postService.remove(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

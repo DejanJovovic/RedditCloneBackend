@@ -1,25 +1,41 @@
 package com.reddit.RedditClone.service;
 
-
-
-
 import com.reddit.RedditClone.dto.ReactionDTO;
+import com.reddit.RedditClone.model.Community;
+import com.reddit.RedditClone.model.Post;
 import com.reddit.RedditClone.model.Reaction;
+import com.reddit.RedditClone.repository.PostRepository;
+import com.reddit.RedditClone.repository.ReactionRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
-public interface ReactionService {
+import static com.reddit.RedditClone.model.ReactionType.UPVOTE;
 
-    Reaction update(Long id, ReactionDTO dto);
+@Service
+@AllArgsConstructor
+@NoArgsConstructor
+public class ReactionService {
 
-    Reaction add(ReactionDTO dto);
+    @Autowired
+    private PostRepository postRepository;
 
-    List<Reaction> getAll();
-    Reaction getOne(Long id);
+    @Autowired
+    private ReactionRepository reactionRepository;
 
-    Reaction delete(Long id);
-
-    Reaction save(Reaction reaction);
-
-    Reaction findByUserId(Long postId, Long id);
+    public Reaction save(Reaction reaction){
+        try {
+            return reactionRepository.save(reaction);
+        }catch (IllegalArgumentException e){
+            return null;
+        }
+    }
+    public Reaction findByUserId(Long postId,Long id){
+        return reactionRepository.findByUserId(postId,id);
+    }
 }

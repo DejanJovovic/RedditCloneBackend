@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -21,15 +20,6 @@ public class UserDTO {
 
     @NotBlank
     private String password;
-
-    private String email;
-    private String avatar;
-    private LocalDate creationDate;
-
-    private String description;
-    private String displayName;
-
-    private CommunityDTO community;
 
     public UserDTO(User createdUser) {
         this.id = createdUser.getId();

@@ -22,9 +22,9 @@ public class Post {
     private Long postId;
     private String title;
     private String text;
+    private boolean deleted;
     private LocalDate creationDate;
     private String imagePath;
-    private boolean deleted;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private User user;

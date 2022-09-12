@@ -1,28 +1,35 @@
 package com.reddit.RedditClone.service;
 
-
-
-import com.reddit.RedditClone.dto.PostDTO;
 import com.reddit.RedditClone.model.Post;
+import com.reddit.RedditClone.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface PostService {
-    Post add(PostDTO dto);
+@Service
+public class PostService {
 
-    List<Post> getAll();
-    Post getOne(Long id);
+    @Autowired
+    private PostRepository postRepository;
 
-    Post update(Long id, PostDTO dto);
+    public Post save(Post post){
+        return postRepository.save(post);
+    }
+    public List<Post> findAll(){
+        return postRepository.findAll();
+    }
 
-    Post delete(Long id);
+    public Post findOneById(Long postId) {
+        return  postRepository.findOneById(postId);
+    }
 
-    Post save(Post post);
+    public void remove(Long id) {
+        postRepository.deleteById(id);
+    }
 
-    List<Post> findAllByCommunity(Long id);
-
-    List<Post> findAll();
-
-    Post findOneById(Long postId);
-
+    public List<Post> findAllByCommunity(Long id) {
+        return postRepository.findAllByCommunity(id);
+    }
 }

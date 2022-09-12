@@ -5,7 +5,6 @@ import com.reddit.RedditClone.dto.JwtAuthenticationRequest;
 import com.reddit.RedditClone.dto.UserDTO;
 import com.reddit.RedditClone.dto.UserTokenState;
 import com.reddit.RedditClone.model.User;
-import com.reddit.RedditClone.service.Impl.CustomUserDetailsService;
 import com.reddit.RedditClone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController {
 
     @Autowired
-    CustomUserDetailsService userDetailsService;
+    UserDetailsService userDetailsService;
 
     @Autowired
     UserService userService;

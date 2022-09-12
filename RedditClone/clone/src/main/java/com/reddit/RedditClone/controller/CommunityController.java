@@ -3,7 +3,6 @@ package com.reddit.RedditClone.controller;
 import com.reddit.RedditClone.dto.CommunityDTO;
 import com.reddit.RedditClone.model.Community;
 import com.reddit.RedditClone.model.User;
-import com.reddit.RedditClone.service.CommunityService;
 import com.reddit.RedditClone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,10 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import com.reddit.RedditClone.service.CommunityService;
+
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class CommunityController {
         community.setCreationDate(lt);
         community.setName(communityDTO.getName());
         community.setDescription(communityDTO.getDescription());
-        User user = userService.findByUsername("jova");
+        User user = userService.findByUsername("dejan");
         community.setUser(user);
         community = communityService.save(community);
         return new ResponseEntity<>(new CommunityDTO(community), HttpStatus.CREATED);
@@ -81,7 +83,7 @@ public class CommunityController {
     public ResponseEntity<Void> deleteCommunity(@PathVariable Long id){
         Community community = communityService.findOneById(id);
         if(community != null){
-            communityService.delete(id);
+            communityService.remove(id);
             return new ResponseEntity<>(HttpStatus.OK);
 
         } else {
@@ -91,3 +93,5 @@ public class CommunityController {
 
 
 }
+
+

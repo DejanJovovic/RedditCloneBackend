@@ -1,27 +1,42 @@
 package com.reddit.RedditClone.service;
 
-
-
-import com.reddit.RedditClone.dto.CommunityDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.reddit.RedditClone.model.Community;
+import com.reddit.RedditClone.repository.CommunityRepository;
+
 
 import java.util.List;
 
-public interface CommunityService {
+@Service
+public class CommunityService {
 
-    Community add(CommunityDTO dto);
-
-    List<Community> getAll();
-    Community getOne(Long id);
-
-    Community update(Long id, CommunityDTO dto);
-
-    Community delete(Long id);
-
-    Community save(Community community);
-
-    Community findOneById(Long id);
+	@Autowired
+	private CommunityRepository communityRepository;
 
 
+	public Community save(Community community){
+		try{
+			return communityRepository.save(community);
+		}catch (IllegalArgumentException e){
+			return null;
+		}
+	}
 
+	public List<Community> getAll(){
+		return communityRepository.findAll();
+	}
+
+	public Community findOneById(Long id){
+		return communityRepository.findOneById(id);
+	}
+
+	public void remove(Long id) {
+		communityRepository.deleteById(id);
+	}
+
+
+	//public Community findOneById(Long communityId) {
+	//	return communityRepository.findOneById(communityId);
+	//}
 }

@@ -1,6 +1,6 @@
 package com.reddit.RedditClone.dto;
 import com.reddit.RedditClone.model.Post;
-
+import lombok.Data;
 import java.time.LocalDate;
 
 
@@ -9,13 +9,9 @@ public class PostDTO {
     private Long id;
     private String title;
     private String text;
-
-    private LocalDate creationDate;
     private String imagePath;
     private Integer karma;
     private CommunityDTO community;
-    private UserDTO user;
-
 
     public PostDTO() {
     }
@@ -77,24 +73,5 @@ public class PostDTO {
     public void setCommunity(CommunityDTO community) {
         this.community = community;
     }
-
-    public LocalDate getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public UserDTO getUser() {
-        return user;
-    }
-
-    public void setUser(UserDTO user) {
-        this.user = user;
-    }
-
-
-
-
 }
+

@@ -33,11 +33,4 @@ public class User {
     private String description;
     private String displayName;
     private LocalDate creationDate;
-    private boolean deleted;
-    private EUser role;
-
-    public User(Long id, String username, String password, String email, String avatar, String description, String displayName, LocalDate registrationDate) {
-        super();
-    }
-
 }

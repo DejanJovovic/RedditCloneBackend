@@ -8,7 +8,6 @@ import java.time.LocalDate;
 public class Comment extends BaseEntity {
     private String text;
     private LocalDate timestamp;
-    private boolean isDeleted;
 
 
     @ManyToOne
@@ -49,13 +48,6 @@ public class Comment extends BaseEntity {
         this.timestamp = timestamp;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
 
 
 }

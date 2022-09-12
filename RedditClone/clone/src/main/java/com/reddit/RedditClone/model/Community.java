@@ -8,8 +8,6 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-
-
 @Getter
 @Setter
 @Entity
@@ -32,9 +30,6 @@ public class Community {
     @Column(nullable = false)
     private LocalDate creationDate;
     private String suspendedReason;
-    private boolean isSuspended;
-    private boolean deleted;
-
 
     public void addPost(Post post) {
         posts.add(post);
@@ -42,5 +37,6 @@ public class Community {
 
     }
     public Community(){}
+
 
 }
