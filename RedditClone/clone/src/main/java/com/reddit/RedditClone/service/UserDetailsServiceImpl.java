@@ -1,7 +1,5 @@
 package com.reddit.RedditClone.service;
 
-
-
 import com.reddit.RedditClone.model.User;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,19 +11,16 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 @Service
 @Primary
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 
-    private final com.reddit.RedditClone.service.UserService userService;
+    private final UserService userService;
 
-    public UserDetailsServiceImpl(com.reddit.RedditClone.service.UserService userService) {
+    public UserDetailsServiceImpl(UserService userService) {
         this.userService = userService;
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

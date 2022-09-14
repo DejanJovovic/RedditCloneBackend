@@ -16,6 +16,10 @@ public class PostDTO {
     public PostDTO() {
     }
 
+    public PostDTO(Long postId) {
+        this.id = postId;
+    }
+
     public Integer getKarma() {
         return karma;
     }

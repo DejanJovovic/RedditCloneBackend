@@ -1,53 +1,40 @@
 package com.reddit.RedditClone.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+@Getter
+@Setter
 @Entity
-public class Comment extends BaseEntity {
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long commentId;
+
+    @Column(nullable = false)
     private String text;
-    private LocalDate timestamp;
+
+    @Column(nullable = false)
+    private LocalDate creationDate;
+
+    private boolean deleted;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "postId")
     private Post post;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public LocalDate getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDate timestamp) {
-        this.timestamp = timestamp;
-    }
-
+    public Comment(){}
 
 
 }

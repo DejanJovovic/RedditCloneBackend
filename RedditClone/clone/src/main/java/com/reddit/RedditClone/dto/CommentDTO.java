@@ -1,45 +1,46 @@
 package com.reddit.RedditClone.dto;
 
+import com.reddit.RedditClone.model.Comment;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 public class CommentDTO {
 
+    private Long id;
+
     private String text;
-    private LocalDate timestamp;
-    private boolean isDeleted;
-
-
-    private UserDTO user;
+    private LocalDate creationDate;
 
     private PostDTO post;
 
 
-    private CommentDTO comment;
 
-    public UserDTO getUser() {
-        return user;
+    public CommentDTO(Comment comment) {
+        id = comment.getCommentId();
+        text = comment.getText();
+        post = new PostDTO(comment.getPost());
     }
 
-    public void setUser(UserDTO user) {
-        this.user = user;
-    }
+
+
+
 
     public PostDTO getPost() {
         return post;
     }
 
-    public void setPost(PostDTO post) {
+    public void setPostDTO(PostDTO post) {
         this.post = post;
     }
 
-    public CommentDTO getComment() {
-        return comment;
+    public Long getId() {
+        return id;
     }
 
-    public void setComment(CommentDTO comment) {
-        this.comment = comment;
+    public void setId(Long id) {
+        this.id = id;
     }
 
 
@@ -51,21 +52,15 @@ public class CommentDTO {
         this.text = text;
     }
 
-    public LocalDate getTimestamp() {
-        return timestamp;
+
+    public LocalDate getCreationDate() {
+        return creationDate;
     }
 
-    public void setTimestamp(LocalDate timestamp) {
-        this.timestamp = timestamp;
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
-
+    public CommentDTO() {}
 
 }

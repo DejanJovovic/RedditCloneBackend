@@ -1,9 +1,6 @@
 package com.reddit.RedditClone.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -42,10 +39,19 @@ public class Post {
     }
 
 
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+    private Set<Comment> comments = new HashSet<Comment>();
+
     @OneToMany(fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
     private Set<Reaction> reactions = new HashSet<Reaction>();
 
     public void setKarma(Integer karma) {
         this.karma = karma;
     }
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+        comment.setPost(this);
+    }
+
 }

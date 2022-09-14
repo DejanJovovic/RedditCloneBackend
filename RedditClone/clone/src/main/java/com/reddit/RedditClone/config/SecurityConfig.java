@@ -67,11 +67,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .permitAll()
                 .antMatchers(HttpMethod.POST, "/api/posts")
                 .permitAll()
+                .antMatchers(HttpMethod.POST, "/api/comments")
+                .permitAll()
                 .antMatchers(HttpMethod.POST, "/api/users/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/users").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/reaction")
                 .permitAll()
                 .antMatchers(HttpMethod.PUT, "/api/posts/{id}")
+                .permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/comments/{id}")
                 .permitAll()
                 .antMatchers(HttpMethod.GET, "/api/community/{id}").permitAll().anyRequest().
 

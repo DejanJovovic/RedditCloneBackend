@@ -1,21 +1,37 @@
 package com.reddit.RedditClone.service;
 
-
-import com.reddit.RedditClone.dto.CommentDTO;
 import com.reddit.RedditClone.model.Comment;
+import com.reddit.RedditClone.model.Post;
+import com.reddit.RedditClone.repository.CommentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public interface CommentService {
+@Service
+public class CommentService {
 
-    Comment add(CommentDTO dto);
 
-    List<Comment> getAll();
-    Comment getOne(Long id);
+    @Autowired
+    private CommentRepository commentRepository;
 
-    Comment update(Long id, CommentDTO dto);
 
-    Comment delete(Long id);
+    public Comment save(Comment comment){
+        return commentRepository.save(comment);
+    }
 
+    public List<Comment> findAll(){
+        return commentRepository.findAll();
+    }
+    public Comment findOneById(Long commentId) {
+        return  commentRepository.findOneById(commentId);
+    }
+
+    public void remove(Long id) {
+        commentRepository.deleteById(id);
+    }
+
+    public List<Comment> findAllByPost(Long id) {
+        return commentRepository.findAllByPost(id);
+    }
 }
-
