@@ -3,6 +3,7 @@ package com.reddit.RedditClone.model;
 import javax.persistence.*;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -31,7 +32,7 @@ public class Community {
     private LocalDate creationDate;
     private String suspendedReason;
 
-    public void addPost(Post post) {
+    public void addPost(Post post, MultipartFile file) {
         posts.add(post);
         post.setCommunity(this);
 

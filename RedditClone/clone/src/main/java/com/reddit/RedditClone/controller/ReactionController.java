@@ -4,7 +4,7 @@ import com.reddit.RedditClone.dto.ReactionDTO;
 import com.reddit.RedditClone.model.Post;
 import com.reddit.RedditClone.model.Reaction;
 import com.reddit.RedditClone.model.User;
-import com.reddit.RedditClone.service.PostService;
+import com.reddit.RedditClone.service.Impl.PostServiceImpl;
 import com.reddit.RedditClone.service.ReactionService;
 import com.reddit.RedditClone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +30,14 @@ public class ReactionController {
     private UserService userService;
 
     @Autowired
-    private PostService postService;
+    private PostServiceImpl postServiceImpl;
 
     @PostMapping(consumes = "application/json")
     public ResponseEntity<ReactionDTO>reaction(@RequestBody ReactionDTO reactionDTO){
         if(reactionDTO.getPostId() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Post post = postService.findOneById(reactionDTO.getPostId());
+        Post post = postServiceImpl.findOneById(reactionDTO.getPostId());
         if (post == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -56,7 +56,7 @@ public class ReactionController {
 
                 post.setKarma(post.getKarma() - 1);
             }
-            postService.save(post);
+            postServiceImpl.save(post);
             reac.setType(reactionDTO.getType());
             reac = reactionService.save(reac);
 
@@ -68,7 +68,7 @@ public class ReactionController {
 
             post.setKarma(post.getKarma() - 1);
         }
-        postService.save(post);
+        postServiceImpl.save(post);
 
         User user = userService.findByUsername("mika");
 

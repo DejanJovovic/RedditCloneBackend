@@ -1,13 +1,11 @@
 package com.reddit.RedditClone.controller;
 
 import com.reddit.RedditClone.dto.CommentDTO;
-import com.reddit.RedditClone.dto.PostDTO;
 import com.reddit.RedditClone.model.Comment;
-import com.reddit.RedditClone.model.Community;
 import com.reddit.RedditClone.model.Post;
 import com.reddit.RedditClone.model.User;
 import com.reddit.RedditClone.service.CommentService;
-import com.reddit.RedditClone.service.PostService;
+import com.reddit.RedditClone.service.Impl.PostServiceImpl;
 import com.reddit.RedditClone.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +28,7 @@ public class CommentController {
     private UserService userService;
 
     @Autowired
-    private PostService postService;
+    private PostServiceImpl postServiceImpl;
 
 
 
@@ -39,7 +37,7 @@ public class CommentController {
         if(commentDTO.getPost() == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        Post post = postService.findOneById(commentDTO.getPost().getId());
+        Post post = postServiceImpl.findOneById(commentDTO.getPost().getId());
 
         if(post == null){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

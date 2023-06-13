@@ -1,6 +1,8 @@
 package com.reddit.RedditClone.dto;
 import com.reddit.RedditClone.model.Post;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.time.LocalDate;
 
 
@@ -11,6 +13,7 @@ public class PostDTO {
     private String text;
     private String imagePath;
     private Integer karma;
+    private MultipartFile file;
     private CommunityDTO community;
 
     public PostDTO() {
@@ -76,6 +79,14 @@ public class PostDTO {
 
     public void setCommunity(CommunityDTO community) {
         this.community = community;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }
 
